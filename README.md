@@ -1,5 +1,9 @@
 # kubeps
 
+[![Build Status](https://travis-ci.org/koudaiii/kubeps.svg?branch=master)](https://travis-ci.org/koudaiii/kubeps)
+[![Docker Repository on Quay](https://quay.io/repository/koudaiii/kubeps/status "Docker Repository on Quay")](https://quay.io/repository/koudaiii/kubeps)
+[![GitHub release](https://img.shields.io/github/release/koudaiii/kubeps.svg)](https://github.com/koudaiii/kubeps/releases)
+
 Get container image tag for Kubernetes Pods
 
 As you know, `kubectl get pod -o wide` can get only pod( NAME,READY,STATUS, RESTARTS,AGE,IP,NODE).
