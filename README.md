@@ -71,8 +71,8 @@ $ docker run \
 
 ## Usage
 
-Logs of all pods, all containers in pod in the specified namespace are streaming. When new pod is added, logs of the pod also appears.
-To stop streaming and exit, press `Ctrl-C`.
+`kubeps` gets all containers in pod in the specified namespace or labels. When new pod is added, the pod also appears.
+To stop and exit, press `Ctrl-C`.
 
 ```bash
 ```
