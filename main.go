@@ -70,7 +70,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	deployments, err := clientset.Deployments(namespace).List(v1.ListOptions{})
+	deployments, err := clientset.Deployments(namespace).List(v1.ListOptions{
+		LabelSelector: labels,
+	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
@@ -92,7 +94,9 @@ func main() {
 	deploymentPrint.Flush()
 	fmt.Println()
 
-	podList, err := clientset.Core().Pods(namespace).List(v1.ListOptions{})
+	podList, err := clientset.Core().Pods(namespace).List(v1.ListOptions{
+		LabelSelector: labels,
+	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
