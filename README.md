@@ -6,8 +6,8 @@
 
 Get container image tag for Kubernetes Pods
 
-As you know, `kubectl get pod -o wide` can get only pod( NAME,READY,STATUS, RESTARTS,AGE,IP,NODE).
-`kubectl get po` difficult for you to get container image or tag.
+As you know, `kubectl get pod -o wide --show-labels` can get only pod( NAME,READY,STATUS, RESTARTS,AGE,IP,NODE,LABELS).
+`kubectl get pod` difficult for you to get container image or tag.
 `kubeps` enables you to get container image and tag in ALL pods that the specified namespace or labels.
 
 ![example](_images/example.png)
@@ -71,10 +71,39 @@ $ docker run \
 
 ## Usage
 
-`kubeps` gets all containers in pod in the specified namespace or labels. When new pod is added, the pod also appears.
-To stop and exit, press `Ctrl-C`.
+`kubeps` gets all containers in pod in the specified namespace or labels.
 
 ```bash
+$ kubeps --namespace docker-hello-world
+=== Deployment ===
+NAME                    IMAGE                           NAMESPACE
+docker-hello-world      koudaiii/hello-world:3959aca    docker-hello-world
+
+=== Pod ===
+NAME                                    IMAGE                           STATUS  RESTARTS        START                           NAMESPACE
+docker-hello-world-2473057991-9ftt0     koudaiii/hello-world:3959aca    Running 0               2016-11-18 14:27:21 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-biyvx     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-dkkv1     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-qtpu7     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-w1st3     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+```
+
+With `--labels` option, you can filter pods.
+
+
+```bash
+$ kubeps --labels role=web --namespace docker-hello-world
+=== Deployment ===
+NAME                    IMAGE                           NAMESPACE
+docker-hello-world      koudaiii/hello-world:3959aca    docker-hello-world
+
+=== Pod ===
+NAME                                    IMAGE                           STATUS  RESTARTS        START                           NAMESPACE
+docker-hello-world-2473057991-9ftt0     koudaiii/hello-world:3959aca    Running 0               2016-11-18 14:27:21 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-biyvx     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-dkkv1     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-qtpu7     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-w1st3     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
 ```
 
 ### kubeconfig file
@@ -95,7 +124,7 @@ $ kubeps --kubeconfig=/path/to/kubeconfig
 |---------|-----------|-------|-------|
 |`--kubeconfig=KUBECONFIG`|Path of kubeconfig||`~/.kube/config`|
 |`--labels=LABELS`|Label filter query (e.g. `app=APP,role=ROLE`)|||
-|`--namespace=NAMESPACE`|Kubernetes namespace||`default`|
+|`--namespace=NAMESPACE`|Kubernetes namespace||All namespaces|
 |`-h`, `-help`|Print command line usage|||
 |`-v`, `-version`|Print version|||
 
