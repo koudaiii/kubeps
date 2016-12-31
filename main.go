@@ -70,6 +70,9 @@ func main() {
 		os.Exit(1)
 	}
 
+	fmt.Printf("Namespace: %s\n", namespace)
+	fmt.Printf("Labels:    %s\n\n", labels)
+
 	deployments, err := clientset.Deployments(namespace).List(v1.ListOptions{
 		LabelSelector: labels,
 	})
