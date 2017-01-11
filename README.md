@@ -35,10 +35,10 @@ Kubernetes 1.3 or above
 
 ### Using Homebrew (OS X only)
 
-Formula is available at [koudaiii/homebrew-koudaiii](https://github.com/koudaiii/homebrew-koudaiii).
+Formula is available at [koudaiii/homebrew-tools](https://github.com/koudaiii/homebrew-tools).
 
 ```bash
-$ brew tap koudaiii/koudaiii
+$ brew tap koudaiii/tools
 $ brew install kubeps
 ```
 
