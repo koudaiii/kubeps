@@ -18,7 +18,7 @@ var (
 	namespace     string
 	labels        string
 	version       bool
-	podColumns    = []string{"NAME", "IMAGE", "STATUS", "RESTARTS", "START", "NAMESPACE"}
+	podColumns    = []string{"NAME", "IMAGE", "STATUS", "READY", "RESTARTS", "START", "NAMESPACE"}
 	deployColumns = []string{"NAME", "IMAGE", "NAMESPACE"}
 )
 
@@ -111,6 +111,13 @@ func main() {
 	fmt.Fprintln(podPrint, strings.Join(podColumns, "\t"))
 
 	for _, pod := range podList.Items {
+		readyContainers := 0
+		for i := len(pod.Status.ContainerStatuses) - 1; i >= 0; i-- {
+			container := pod.Status.ContainerStatuses[i]
+			if container.Ready && container.State.Running != nil {
+				readyContainers++
+			}
+		}
 		for _, container := range pod.Spec.Containers {
 			if pod.Status.ContainerStatuses != nil {
 				fmt.Fprintln(podPrint, strings.Join(
@@ -118,6 +125,7 @@ func main() {
 						pod.Name,
 						container.Image,
 						string(pod.Status.Phase),
+						strconv.FormatInt(int64(readyContainers), 10) + "/" + strconv.FormatInt(int64(len(pod.Spec.Containers)), 10),
 						strconv.FormatInt(int64(pod.Status.ContainerStatuses[0].RestartCount), 10),
 						pod.Status.StartTime.String(),
 						pod.Namespace,
@@ -129,6 +137,7 @@ func main() {
 						pod.Name,
 						container.Image,
 						string(pod.Status.Phase),
+						strconv.FormatInt(int64(readyContainers), 10) + "/" + strconv.FormatInt(int64(len(pod.Spec.Containers)), 10),
 						"<none>",
 						"<none>",
 						pod.Namespace,
