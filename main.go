@@ -35,15 +35,6 @@ func main() {
 	flags.StringVar(&namespace, "namespace", "", "Kubernetes namespace")
 	flags.BoolVarP(&version, "version", "v", false, "Print version")
 
-	// uses the current context in kubeconfig
-	if kubeconfig == "" {
-		if os.Getenv("KUBECONFIG") != "" {
-			kubeconfig = os.Getenv("KUBECONFIG")
-		} else {
-			kubeconfig = clientcmd.RecommendedHomeFile
-		}
-	}
-
 	if err := flags.Parse(os.Args[1:]); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
@@ -54,11 +45,14 @@ func main() {
 		os.Exit(0)
 	}
 
-	clientConfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
-		&clientcmd.ClientConfigLoadingRules{ExplicitPath: kubeconfig},
-		&clientcmd.ConfigOverrides{})
+	loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
+	// if you want to change the loading rules (which files in which order), you can do so here
+	loadingRules.ExplicitPath = kubeconfig
+	configOverrides := &clientcmd.ConfigOverrides{}
+	// if you want to change override values or bind them to flags, there are methods to help you
+	kubeConfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(loadingRules, configOverrides)
+	config, err := kubeConfig.ClientConfig()
 
-	config, err := clientConfig.ClientConfig()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
