@@ -18,7 +18,7 @@ var (
 	namespace     string
 	labels        string
 	version       bool
-	podColumns    = []string{"NAME", "IMAGE", "STATUS", "RESTARTS", "START", "NAMESPACE"}
+	podColumns    = []string{"NAME", "IMAGE", "STATUS", "READY", "RESTARTS", "START", "NAMESPACE"}
 	deployColumns = []string{"NAME", "IMAGE", "NAMESPACE"}
 )
 
