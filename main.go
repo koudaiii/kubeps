@@ -111,6 +111,13 @@ func main() {
 	fmt.Fprintln(podPrint, strings.Join(podColumns, "\t"))
 
 	for _, pod := range podList.Items {
+		readyContainers := 0
+		for i := len(pod.Status.ContainerStatuses) - 1; i >= 0; i-- {
+			container := pod.Status.ContainerStatuses[i]
+			if container.Ready && container.State.Running != nil {
+				readyContainers++
+			}
+		}
 		for _, container := range pod.Spec.Containers {
 			if pod.Status.ContainerStatuses != nil {
 				fmt.Fprintln(podPrint, strings.Join(
