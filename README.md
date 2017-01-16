@@ -80,12 +80,12 @@ NAME                    IMAGE                           NAMESPACE
 docker-hello-world      koudaiii/hello-world:3959aca    docker-hello-world
 
 === Pod ===
-NAME                                    IMAGE                           STATUS  RESTARTS        START                           NAMESPACE
-docker-hello-world-2473057991-9ftt0     koudaiii/hello-world:3959aca    Running 0               2016-11-18 14:27:21 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-biyvx     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-dkkv1     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-qtpu7     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-w1st3     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+NAME                                    IMAGE                           STATUS  READY RESTARTS        START                           NAMESPACE
+docker-hello-world-2473057991-9ftt0     koudaiii/hello-world:3959aca    Running 1/1   0               2016-11-18 14:27:21 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-biyvx     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-dkkv1     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-qtpu7     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-w1st3     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
 ```
 
 With `--labels` option, you can filter pods.
@@ -98,12 +98,12 @@ NAME                    IMAGE                           NAMESPACE
 docker-hello-world      koudaiii/hello-world:3959aca    docker-hello-world
 
 === Pod ===
-NAME                                    IMAGE                           STATUS  RESTARTS        START                           NAMESPACE
-docker-hello-world-2473057991-9ftt0     koudaiii/hello-world:3959aca    Running 0               2016-11-18 14:27:21 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-biyvx     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-dkkv1     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-qtpu7     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-w1st3     koudaiii/hello-world:3959aca    Running 0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+NAME                                    IMAGE                           STATUS  READY RESTARTS        START                           NAMESPACE
+docker-hello-world-2473057991-9ftt0     koudaiii/hello-world:3959aca    Running 1/1   0               2016-11-18 14:27:21 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-biyvx     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-dkkv1     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-qtpu7     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+docker-hello-world-2473057991-w1st3     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
 ```
 
 ### kubeconfig file
