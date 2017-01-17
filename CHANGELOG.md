@@ -1,3 +1,7 @@
+# [v0.2.1](https://github.com/koudaiii/kubeps/releases/tag/v0.2.1)
+
+- refactor #21
+
 # [v0.2.0](https://github.com/koudaiii/kubeps/releases/tag/v0.2.0)
 
 - display ready counts #19
