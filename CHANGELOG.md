@@ -1,3 +1,7 @@
+# [v0.2.3](https://github.com/koudaiii/kubeps/releases/tag/v0.2.3)
+
+- add LAST time #27
+
 # [v0.2.2](https://github.com/koudaiii/kubeps/releases/tag/v0.2.2)
 
 - add short options #26
