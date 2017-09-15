@@ -18,7 +18,7 @@ var (
 	namespace     string
 	labels        string
 	version       bool
-	podColumns    = []string{"NAME", "IMAGE", "STATUS", "READY", "RESTARTS", "START", "NAMESPACE"}
+	podColumns    = []string{"NAME", "IMAGE", "STATUS", "READY", "RESTARTS", "START", "LAST", "NAMESPACE"}
 	deployColumns = []string{"NAME", "IMAGE", "NAMESPACE"}
 )
 
@@ -122,6 +122,7 @@ func main() {
 						strconv.FormatInt(int64(readyContainers), 10) + "/" + strconv.FormatInt(int64(len(pod.Spec.Containers)), 10),
 						strconv.FormatInt(int64(pod.Status.ContainerStatuses[0].RestartCount), 10),
 						pod.Status.StartTime.String(),
+						finishedAt(pod.Status.ContainerStatuses[0]),
 						pod.Namespace,
 					}, "\t",
 				))
@@ -134,6 +135,7 @@ func main() {
 						strconv.FormatInt(int64(readyContainers), 10) + "/" + strconv.FormatInt(int64(len(pod.Spec.Containers)), 10),
 						"<none>",
 						"<none>",
+						"<none>",
 						pod.Namespace,
 					}, "\t",
 				))
@@ -144,4 +146,11 @@ func main() {
 	podPrint.Flush()
 	fmt.Println()
 
+}
+
+func finishedAt(n v1.ContainerStatus) string {
+	if n.State.Terminated != nil && n.State.Terminated.Reason == "Completed" {
+		return n.State.Terminated.FinishedAt.String()
+	}
+	return "<none>"
 }
