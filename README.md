@@ -74,36 +74,40 @@ $ docker run \
 `kubeps` gets all containers in pod in the specified namespace or labels.
 
 ```bash
-$ kubeps --namespace docker-hello-world
+Namespace:
+Labels:
+
 === Deployment ===
-NAME                    IMAGE                           NAMESPACE
-docker-hello-world      koudaiii/hello-world:3959aca    docker-hello-world
+NAME		IMAGE								NAMESPACE
+kube-dns	gcr.io/google_containers/k8s-dns-kube-dns-amd64:1.14.4		kube-system
+kube-dns	gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:1.14.4	kube-system
+kube-dns	gcr.io/google_containers/k8s-dns-sidecar-amd64:1.14.4		kube-system
+myapp		quay.io/koudaiii/myapp:latest					myapp
+myapp		nginx:1.13.3-alpine						myapp
+postgres	postgres:9.6.5							myapp
 
 === Pod ===
-NAME                                    IMAGE                           STATUS  READY RESTARTS        START                           NAMESPACE
-docker-hello-world-2473057991-9ftt0     koudaiii/hello-world:3959aca    Running 1/1   0               2016-11-18 14:27:21 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-biyvx     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-dkkv1     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-qtpu7     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-w1st3     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-```
-
-With `--labels` option, you can filter pods.
-
-
-```bash
-$ kubeps --labels role=web --namespace docker-hello-world
-=== Deployment ===
-NAME                    IMAGE                           NAMESPACE
-docker-hello-world      koudaiii/hello-world:3959aca    docker-hello-world
-
-=== Pod ===
-NAME                                    IMAGE                           STATUS  READY RESTARTS        START                           NAMESPACE
-docker-hello-world-2473057991-9ftt0     koudaiii/hello-world:3959aca    Running 1/1   0               2016-11-18 14:27:21 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-biyvx     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-dkkv1     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-qtpu7     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
-docker-hello-world-2473057991-w1st3     koudaiii/hello-world:3959aca    Running 1/1   0               2016-12-25 20:03:34 +0900 JST   docker-hello-world
+NAME							IMAGE								STATUS		READY	RESTARTS	START				LAST				NAMESPACE
+kube-addon-manager-minikube				gcr.io/google-containers/kube-addon-manager:v6.4-beta.2		Running		1/1	1		2017-09-10 23:25:33 +0900 JST	<none>				kube-system
+kube-dns-910330662-hkvmq				gcr.io/google_containers/k8s-dns-kube-dns-amd64:1.14.4		Running		3/3	1		2017-09-10 23:25:36 +0900 JST	<none>				kube-system
+kube-dns-910330662-hkvmq				gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:1.14.4	Running		3/3	1		2017-09-10 23:25:36 +0900 JST	<none>				kube-system
+kube-dns-910330662-hkvmq				gcr.io/google_containers/k8s-dns-sidecar-amd64:1.14.4		Running		3/3	1		2017-09-10 23:25:36 +0900 JST	<none>				kube-system
+kubernetes-dashboard-2jl6t				gcr.io/google_containers/kubernetes-dashboard-amd64:v1.6.3	Running		1/1	1		2017-09-10 23:25:36 +0900 JST	<none>				kube-system
+db-migrate-koudaiii-2017091116251505114716-707pt	quay.io/koudaiii/myapp:946bd19					Succeeded	0/1	0		2017-09-11 16:16:56 +0900 JST	2017-09-11 16:29:01 +0900 JST	myapp
+myapp-2136627869-2qlm1					quay.io/koudaiii/myapp:latest					Running		2/2	1		2017-09-11 18:07:43 +0900 JST	<none>				myapp
+myapp-2136627869-2qlm1					nginx:1.13.3-alpine						Running		2/2	1		2017-09-11 18:07:43 +0900 JST	<none>				myapp
+myapp-2136627869-6w3mj					quay.io/koudaiii/myapp:latest					Running		2/2	1		2017-09-11 18:06:26 +0900 JST	<none>				myapp
+myapp-2136627869-6w3mj					nginx:1.13.3-alpine						Running		2/2	1		2017-09-11 18:06:26 +0900 JST	<none>				myapp
+myapp-2136627869-dcvw3					quay.io/koudaiii/myapp:latest					Running		2/2	1		2017-09-11 18:07:20 +0900 JST	<none>				myapp
+myapp-2136627869-dcvw3					nginx:1.13.3-alpine						Running		2/2	1		2017-09-11 18:07:20 +0900 JST	<none>				myapp
+myapp-2136627869-kwlhx					quay.io/koudaiii/myapp:latest					Running		2/2	1		2017-09-11 18:06:26 +0900 JST	<none>				myapp
+myapp-2136627869-kwlhx					nginx:1.13.3-alpine						Running		2/2	1		2017-09-11 18:06:26 +0900 JST	<none>				myapp
+myapp-job-1505118600-sr7wn				quay.io/koudaiii/myapp:latest					Succeeded	0/1	0		2017-09-11 17:30:05 +0900 JST	2017-09-11 17:30:15 +0900 JST	myapp
+myapp-job-1505119500-dgc2d				quay.io/koudaiii/myapp:latest					Succeeded	0/1	0		2017-09-11 17:45:06 +0900 JST	2017-09-11 17:45:15 +0900 JST	myapp
+myapp-job-1505120400-zbp9s				quay.io/koudaiii/myapp:latest					Succeeded	0/1	0		2017-09-11 18:00:08 +0900 JST	2017-09-11 18:01:08 +0900 JST	myapp
+myapp-job-1505121300-cjgrt				quay.io/koudaiii/myapp:latest					Succeeded	0/1	0		2017-09-11 18:15:01 +0900 JST	2017-09-11 18:15:09 +0900 JST	myapp
+myapp-job-1505122200-0pn60				quay.io/koudaiii/myapp:latest					Succeeded	0/1	0		2017-09-11 18:30:02 +0900 JST	2017-09-11 18:30:10 +0900 JST	myapp
+postgres-2312165663-5vzcs				postgres:9.6.5							Running		1/1	1		2017-09-11 09:52:18 +0900 JST	<none>				myapp
 ```
 
 ### kubeconfig file
@@ -123,8 +127,8 @@ $ kubeps --kubeconfig=/path/to/kubeconfig
 |Option|Description|Required|Default|
 |---------|-----------|-------|-------|
 |`--kubeconfig=KUBECONFIG`|Path of kubeconfig||`~/.kube/config`|
-|`--labels=LABELS`|Label filter query (e.g. `app=APP,role=ROLE`)|||
-|`--namespace=NAMESPACE`|Kubernetes namespace||All namespaces|
+|`-l`, `--labels=LABELS`|Label filter query (e.g. `app=APP,role=ROLE`)|||
+|`-n`,`--namespace=NAMESPACE`|Kubernetes namespace||All namespaces|
 |`-h`, `-help`|Print command line usage|||
 |`-v`, `-version`|Print version|||
 
