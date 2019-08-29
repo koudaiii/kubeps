@@ -66,7 +66,7 @@ $ docker run \
     -t \
     -v $HOME/.kube/config:/.kube/config \
     quay.io/koudaiii/kubeps:latest \
-      -kubeconfig=/.kube/config
+      --kubeconfig=/.kube/config
 ```
 
 ## Usage
